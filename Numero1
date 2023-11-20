@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int validaQuantidade() {
+    int quantidade;
+    cout << "Digite a quantidade de peças fabricadas: ";
+    cin >> quantidade;
+
+    while (quantidade < 0) {
+        cout << "Quantidade inválida. Digite novamente: ";
+        cin >> quantidade;
+    }
+    return quantidade;
+}
+
+float calculaSalario(int quantidade) {
+    float salario_base = 600.0;
+    float adicional = 0.0;
+
+    if (quantidade <= 50) {
+        return salario_base;
+    } else if (quantidade <= 80) {
+        adicional = (quantidade - 50) * 0.50;
+    } else {
+        adicional = 30 * 0.50 + (quantidade - 80) * 0.75;
+    }
+
+    return salario_base + adicional;
+}
+
+void mostraFinal() {
+    int quantidade;
+
+    while (true) {
+        quantidade = validaQuantidade();
+
+        if (quantidade == -1) {
+            break;
+        }
+
+        float salario = calculaSalario(quantidade);
+        cout << "O salário total é: R$ " << salario << endl;
+    }
+}
+
+int main() {
+    mostraFinal();
+    return 0;
+}
